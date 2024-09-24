@@ -58,13 +58,13 @@ const checkAdmin =(req,res,next)=>{
             //incase of a error
             if(err){
                   res.locals.admin=null;
-                  return false;
+                  return true;
                   next();
             }else{
                 let admin= await Admin.findById(decodedToken.id);
                 if(admin==null)
                 {
-                    return false;
+                    return true;
                 }
                 else{
                     res.locals.Admin=admin;
@@ -76,7 +76,7 @@ const checkAdmin =(req,res,next)=>{
 
     }else{
         res.locals.user=null;
-        return false;
+        return true;
         next();
     }
 };
